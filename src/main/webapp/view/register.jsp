@@ -17,6 +17,8 @@ E-mail: <input type="email" name="email" required><br><p>
 Password: <input type="password" name="password" required><br><p>
 First Name: <input type="text" name="name" required><br><p>
 Last Name: <input type="text" name="lastname"><br> <p>
+Age: <input type="text" name="age" required><br><p>
+Date of Birth: <input type="text" name="dateOfBirth" required><br><p>
 Employee code: <input type="text" name="empcode" required><br><p>
 <input type="submit" name="b1" value="REGISTER" ></h2>
 </form>

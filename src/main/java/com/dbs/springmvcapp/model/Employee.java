@@ -3,6 +3,9 @@ package com.dbs.springmvcapp.model;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -28,7 +31,10 @@ public class Employee {
     private String email;
     @XmlElement
     private String empcode;
-
+    @Range(min = 18, max = 58, message = "Employee age should be between 18 and 58")
+    private int age;
+    @XmlElement
+    private LocalDate dateOfBirth;
     public Employee(){
     	
     }
@@ -39,4 +45,14 @@ public class Employee {
 		this.email = email;
 		this.empcode = empcode;
 	}
+	
+	public void setDateOfBirth(String dateOfBirth){
+	       this.dateOfBirth =  LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+	    }
+	    public String getDateOfBirth(){
+	        if(this.dateOfBirth != null) {
+	            return this.dateOfBirth.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+	        }
+	        return "";
+	    }
 }
