@@ -2,6 +2,7 @@ package com.dbs.springmvcapp.controller;
 
 import com.dbs.springmvcapp.model.Employee;
 import com.dbs.springmvcapp.repository.EmployeeDAO;
+import com.dbs.springmvcapp.repository.EmployeeRepository;
 import com.dbs.springmvcapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private EmployeeDAO dao;
+//    @Autowired
+//    private EmployeeRepository repo1;
     @GetMapping(value = "/login")
     public String login(Model model){
         System.out.println("Came inside the login method ");
@@ -38,7 +41,8 @@ public class EmployeeController {
 //            model.addAttribute("user", username);
 //            return "success";
 //        }
-        if(dao.findByName(username) != null&&dao.findByPassword(password)!=null) {
+        if(dao.findByName(username) != null&&dao.findByPassword(password)!=null
+        		&&dao.findByName(username).getId()==dao.findByPassword(password).getId()) {
         	model.addAttribute("user", username);
             return "success";
         }
